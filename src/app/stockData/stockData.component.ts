@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { dateFormatValidator } from './search-date-validator';
 
 @Component({
   selector: 'stock-data',
@@ -8,10 +10,23 @@ import {HttpClient} from "@angular/common/http";
 })
 export class StockData implements OnInit {
 
-  constructor(private http: HttpClient) {
+  dateForm: FormGroup;
+
+  get searchDateControl(): FormGroup {
+    return this.dateForm.get('SearchDate') as FormGroup;
+  }
+
+  constructor(private http: HttpClient, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    this.initForm();
+  }
+
+  initForm(): void {
+    this.dateForm = this.formBuilder.group({
+      SearchDate: ['', [Validators.required, dateFormatValidator]]
+    });
   }
 }
 

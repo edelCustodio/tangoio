@@ -8,6 +8,8 @@ import { StockData } from './stockData/stockData.component';
 //Angular Router Module
 import { RouterModule, Router } from '@angular/router';
 import {HttpClientModule} from "@angular/common/http";
+import { APP_CONFIG } from 'src/config/app.config';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -18,6 +20,7 @@ import {HttpClientModule} from "@angular/common/http";
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
       { path:'', component: StockData }
@@ -26,7 +29,9 @@ import {HttpClientModule} from "@angular/common/http";
   exports: [
     RouterModule
   ],
-  providers: [],
+  providers: [
+    { provide: APP_CONFIG, useValue: environment.configuration },
+  ],
   bootstrap: [AppComponent],
   schemas : [CUSTOM_ELEMENTS_SCHEMA]
 })

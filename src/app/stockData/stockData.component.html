@@ -1,9 +1,18 @@
 <div class="layout-column align-items-center mt-50">
   <section class="layout-row align-items-center justify-content-center">
-    <input type="text" class="large" placeholder="5-January-2000"
-           id="app-input" data-test-id="app-input"/>
-    <button class="" id="submit-button" data-test-id="submit-button">Search</button>
+    <form
+      [formGroup]="dateForm">
+      <input 
+        formControlName="SearchDate"
+        type="text" class="large" placeholder="5-January-2000"
+        id="app-input" data-test-id="app-input"/>
+      <button class="" id="submit-button" [disabled]="!dateForm.valid" data-test-id="submit-button">Search</button>
+    </form>
+    
   </section>
+  <p *ngIf="searchDateControl.errors?.dateFormat">
+    El formato requerido es d-mmmm-yyyy Ej. 5-January-2000
+  </p>
 
   <ul class="mt-50 styled slide-up-fade-in" id="stockData" data-test-id="stock-data" >
     <li class="py-10"></li>
