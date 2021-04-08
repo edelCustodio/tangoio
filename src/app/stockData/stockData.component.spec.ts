@@ -1,8 +1,11 @@
 import {async, ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
 import {StockData} from './stockData.component';
 import {Type} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
+import { StockDataService } from '../services/stock-data.service';
+import { APP_CONFIG } from 'src/config/app.config';
+import { environment } from 'src/environments/environment';
 
 describe('StocksData', () => {
   let component: StockData;
@@ -14,6 +17,7 @@ describe('StocksData', () => {
   let noResult;
   let injector: TestBed;
   let httpMock: HttpTestingController;
+  let stockDataService: StockDataService;
 
   const pushValue = async (value) => {
     appInput.value = value;
@@ -32,9 +36,17 @@ describe('StocksData', () => {
       .configureTestingModule({
         imports: [
           HttpClientTestingModule,
-          FormsModule
+          FormsModule,
+          ReactiveFormsModule
         ],
-        declarations: [StockData]
+        declarations: [StockData],
+        providers: [
+          StockDataService,
+          {
+            provide: APP_CONFIG,
+            useValue: environment.configuration
+        }
+        ]
       })
       .compileComponents();
   }));
@@ -43,6 +55,7 @@ describe('StocksData', () => {
     fixture = TestBed.createComponent(StockData);
     fixture.autoDetectChanges(true);
     compiled = fixture.debugElement.nativeElement;
+    stockDataService = fixture.debugElement.injector.get<StockDataService>(StockDataService as Type<StockDataService>);
     injector = getTestBed();
     httpMock = fixture.debugElement.injector.get<HttpTestingController>(HttpTestingController as Type<HttpTestingController>);
     component = fixture.componentInstance;

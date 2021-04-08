@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<testsuite name="Chrome 89.0.4389 (Windows 10.0.0)" package="unit" timestamp="2021-04-08T05:12:53" id="0" hostname="DESKTOP-1GQDBS0" tests="4" errors="0" failures="0" time="0.163">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36 Edg/89.0.774.68"/>
+  </properties>
+  <testcase name="StocksData Initial UI is rendered as expected" time="0.086" classname=".StocksData"/>
+  <testcase name="StocksData search is made on by clicking on search button and result found - test 2" time="0.033" classname=".StocksData"/>
+  <testcase name="StocksData search is made on by clicking on search button and result found - test 1" time="0.025" classname=".StocksData"/>
+  <testcase name="StocksData search is made on by clicking on search button and no results found" time="0.019" classname=".StocksData"/>
+  <system-out>
+    <![CDATA[Chrome 89.0.4389 (Windows 10.0.0) ERROR
+  DisconnectedClient disconnected from CONNECTED state (transport error)
+
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>
