@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { dateFormatValidator } from './search-date-validator';
 import { StockDataService } from '../services/stock-data.service';
-import { IApiResponse } from './stock-data';
+import { IApiResponse, IStockData } from './stock-data';
 
 @Component({
   selector: 'stock-data',
@@ -13,12 +13,15 @@ import { IApiResponse } from './stock-data';
 export class StockData implements OnInit {
 
   dateForm: FormGroup;
+  stockData: IStockData;
+  init = true;
 
   get searchDateControl(): FormGroup {
     return this.dateForm.get('SearchDate') as FormGroup;
   }
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder, private stockDataService: StockDataService) {
+  constructor(private formBuilder: FormBuilder,
+    private stockDataService: StockDataService) {
   }
 
   ngOnInit() {
@@ -32,10 +35,10 @@ export class StockData implements OnInit {
   }
 
   search(): void {
-    console.log('Search button');
     const form = this.dateForm.value;
     this.stockDataService.getStocks(form.SearchDate).subscribe((response: IApiResponse) => {
-      console.log(response);
+      this.init = false;
+      this.stockData = response.data.length > 0 ? response.data[0] : undefined;
     });
   }
 }

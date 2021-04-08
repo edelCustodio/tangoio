@@ -8,13 +8,13 @@ import { IApiResponse } from "../stockData/stock-data";
 @Injectable()
 export class StockDataService {
 
-    private stocksURL = `${this.config.MOCK_HACKER_RANK_URL}/api/stocks`;
+    private stocksURL = `${this.config.MOCK_HACKER_RANK_URL}api/stocks`;
 
     constructor(
         @Inject(APP_CONFIG) private config: AppConfig,
         private http: HttpClient) { }
 
     getStocks(date: string): Observable<IApiResponse> {
-        return this.http.get<IApiResponse>(this.stocksURL + `/?date=${date}`)
+        return this.http.get<IApiResponse>(this.stocksURL + `?date=${date}`)
     }
 }

@@ -10,6 +10,7 @@ import { RouterModule, Router } from '@angular/router';
 import {HttpClientModule} from "@angular/common/http";
 import { APP_CONFIG } from 'src/config/app.config';
 import { environment } from 'src/environments/environment';
+import { StockDataService } from './services/stock-data.service';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { environment } from 'src/environments/environment';
   ],
   providers: [
     { provide: APP_CONFIG, useValue: environment.configuration },
+    StockDataService
   ],
   bootstrap: [AppComponent],
   schemas : [CUSTOM_ELEMENTS_SCHEMA]
