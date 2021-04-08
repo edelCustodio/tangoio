@@ -45,7 +45,7 @@ describe('StocksData', () => {
           {
             provide: APP_CONFIG,
             useValue: environment.configuration
-        }
+          }
         ]
       })
       .compileComponents();
