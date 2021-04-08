@@ -5,7 +5,7 @@
     "ng": "ng",
     "pretest": "npm install",
     "prestart": "npm install",
-    "start": "ng serve --open --port 8000 --disable-host-check",
+    "start": "ng serve --port 8000 --disable-host-check",
     "build": "ng build",
     "test": "ng test"
   },
